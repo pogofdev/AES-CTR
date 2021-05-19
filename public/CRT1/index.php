@@ -13,5 +13,6 @@ $code = $cipher->encrypt($text);
 $text = $cipher->decrypt($code);
 
 // The $code variable contains the encrypted raw binary data. You can convert raw binary to a safe ASCII string using base64_encode:
-echo "plaintext: $text\n";
-echo "ciphertext: ", base64_encode($code), "\n";
+echo "plaintext: $text<br/>";
+echo "ciphertext: ", base64_encode($code), "<br/>";
+echo "decrypt: ",$cipher->decrypt(base64_decode("AAAAAAAAAAGsVznjUIkhEssOFkDR8w==")), "<br/>";

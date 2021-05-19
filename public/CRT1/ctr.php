@@ -27,7 +27,8 @@ class CTR
 	private function new_nonce ()
 	{
 		$t = microtime(true);
-		$this->counter = array((int)$t & 0xFFFFFFFF, (($t - (int)$t) * 0x100000000) & 0xFFFFFFFF, 0, 0);
+		$this->counter = array(0,1);
+
 		return pack('NN', $this->counter[0], $this->counter[1]);
 	}
 

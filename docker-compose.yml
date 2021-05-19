@@ -1,0 +1,39 @@
+version: '3.7'
+services:
+  laravel-app:
+    #image: registry.gitlab.com/poisongass/thinh_vuong_docker_test:v0.3
+    image: poisongass/aes-ctr:1.0.0
+    ports:
+      - 4040:80
+    volumes:
+      - .:/var/www
+      #- /Users/pogofdev_01/vol/storage/app:/var/www/storage/app
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    #env_file: .env.product
+
+  mysql-db:
+    image: mysql:5.7
+    volumes:
+      #- /Users/pogofdev_01/vol/mysql:/var/lib/mysql
+      - /home/pogofdev-dev/vol/mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret_pass
+      #- MYSQL_ALLOW_EMPTY_PASSWORD=true
+      #- MYSQL_DATABASE=thinhvuong1
+      #- MYSQL_USER=dbuser
+      #- MYSQL_PASSWORD=secret
+
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: mysql-db
+      PMA_PORT: 3306
+    ports:
+      - '8081:80'
+
+
+
+  #docker build -t registry.gitlab.com/poisongass/thinh_vuong_docker_test .
